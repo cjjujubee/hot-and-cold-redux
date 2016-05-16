@@ -9,7 +9,7 @@ var SHOW_INSTRUCTIONS = 'SHOW_INSTRUCTIONS';
 var showInstructions = function() {
   return {
     type: SHOW_INSTRUCTIONS,
-    instructions: 'Make a guess.'
+    text: 'Make a guess.'
   }
 }
 
@@ -22,3 +22,10 @@ var makeGuess = function(guess, guessCount) {
     guessCount: guessCount
   }
 };
+
+exports.NEW_GAME = NEW_GAME;
+exports.newGame = newGame;
+exports.SHOW_INSTRUCTIONS = SHOW_INSTRUCTIONS;
+exports.showInstructions = showInstructions;
+exports.MAKE_GUESS = MAKE_GUESS;
+exports.makeGuess = makeGuess;
