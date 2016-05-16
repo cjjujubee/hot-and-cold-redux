@@ -15,9 +15,10 @@ var showInstructions = function() {
 
 //makes guess and validates
 var MAKE_GUESS = 'MAKE_GUESS';
-var makeGuess = function(guess) {
+var makeGuess = function(guess, guessCount) {
   return {
     type: MAKE_GUESS,
-    guess: guess
+    guess: guess,
+    guessCount: guessCount
   }
 };
