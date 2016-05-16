@@ -2,7 +2,8 @@ var NEW_GAME = 'NEW_GAME';
 var newGame = function() {
   return {
     type: NEW_GAME,
-    guesses: []
+    guesses: [],
+    secretNumber: 10 //Math.floor((Math.random() * 100) + 1)
   }
 };
 

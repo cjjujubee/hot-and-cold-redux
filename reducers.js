@@ -1,5 +1,6 @@
 var actions = require('./actions');
 var update = require('react-addons-update');
+var store = require('./store');
 
 var initialState = [];
 
@@ -11,18 +12,26 @@ var gameReducer = function(state, action) {
 
   else if (action.type === actions.NEW_GAME) {
     return state.concat({
-      guesses: []
+      guesses: [],
+      secretNumber: 10 //Math.floor((Math.random() * 100) + 1)
     });
-    //return initialState;
   }
 
   else if (action.type === actions.MAKE_GUESS) {
-    var currentState = update(state, {[state.length - 1]: {guesses: {$push: [action.guess]}}});
-    return currentState;
-    // var currentState = JSON.parse(JSON.stringify(state));
-    // console.log(currentState);
-    // var newGuessList = Object.assign({}, currentState, {guesses: currentState.guesses.push(actions.guess), guessCount: initialState.guessCount + 1});
-    // state = newGuessList;
+    if (typeof action.guess === 'number' && (action.guess >= 1 && action.guess <= 100)) {
+      var currentState = update(state, {[state.length - 1]: {guesses: {$push: [action.guess]}}});
+      // console.log(state[state.length - 1].secretNumber);
+      if (state[state.length - 1].secretNumber === action.guess) {
+        console.log('WINNER!!!!');
+        return gameReducer(currentState, actions.newGame());
+      }
+      else {
+        return currentState;
+      }
+    }
+    else {
+      console.log("You're a dumbass!!! " + action.guess + " is not a number between 1 and 100!");
+    }
   }
 
   return state;
