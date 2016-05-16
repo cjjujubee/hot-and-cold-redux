@@ -15,6 +15,7 @@ var gameReducer = function(state, action) {
       guesses: [],
       secretNumber: 10 //Math.floor((Math.random() * 100) + 1)
     });
+    //newGame(state);
   }
 
   else if (action.type === actions.MAKE_GUESS) {
@@ -24,6 +25,7 @@ var gameReducer = function(state, action) {
       if (state[state.length - 1].secretNumber === action.guess) {
         console.log('WINNER!!!!');
         return gameReducer(currentState, actions.newGame());
+        // currentState = newGame(currentState);
       }
       else {
         return currentState;
@@ -34,7 +36,15 @@ var gameReducer = function(state, action) {
     }
   }
 
+
   return state;
 };
+
+// function newGame(state) {
+//   return state.concat({
+//     guesses: [],
+//     secretNumber: 10 //Math.floor((Math.random() * 100) + 1)
+//   });
+// }
 
 exports.gameReducer = gameReducer;
