@@ -6,6 +6,9 @@ var Provider = require('react-redux').Provider;
 var store = require('./store.js');
 
 var HotAndCold = React.createClass({
+  componentWillMount: function() {
+    this.props.dispatch(actions.newGame());
+  },
   newGame: function() {
     this.props.dispatch(actions.newGame());
   },
