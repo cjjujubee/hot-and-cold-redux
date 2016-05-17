@@ -13,7 +13,8 @@ var gameReducer = function(state, action) {
   else if (action.type === actions.NEW_GAME) {
     return state.concat({
       guesses: [],
-      secretNumber: 10 //Math.floor((Math.random() * 100) + 1)
+      secretNumber: 10, //Math.floor((Math.random() * 100) + 1)
+      winner: false
     });
     //newGame(state);
   }

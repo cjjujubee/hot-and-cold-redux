@@ -16,6 +16,7 @@ var HotAndCold = React.createClass({
     var guess = parseInt(this.refs.userGuess.value);
     console.log(guess);
     this.props.dispatch(actions.makeGuess(guess));
+    console.log(this.props.games[0].winner);
   },
   render: function() {
     return (
@@ -35,7 +36,7 @@ var HotAndCold = React.createClass({
 
 var mapStateToProps = function(state, props) {
     return {
-        guess: state
+        games: state
     };
 };
 

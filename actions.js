@@ -3,7 +3,8 @@ var newGame = function() {
   return {
     type: NEW_GAME,
     guesses: [],
-    secretNumber: 10 //Math.floor((Math.random() * 100) + 1)
+    secretNumber: 10, //Math.floor((Math.random() * 100) + 1)
+    winner: false
   }
 };
 
