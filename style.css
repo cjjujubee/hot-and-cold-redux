@@ -1,0 +1,7 @@
+.winner {
+  opacity: 1;
+}
+
+.loser {
+  opacity: 0;
+}

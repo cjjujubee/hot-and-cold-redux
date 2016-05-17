@@ -6,7 +6,7 @@ var Provider = require('react-redux').Provider;
 var store = require('./store.js');
 
 var HotAndCold = React.createClass({
-  componentWillMount: function() {
+  componenWillMount: function() {
     this.props.dispatch(actions.newGame());
   },
   newGame: function() {
@@ -16,8 +16,16 @@ var HotAndCold = React.createClass({
     var guess = parseInt(this.refs.userGuess.value);
     console.log(guess);
     this.props.dispatch(actions.makeGuess(guess));
+    console.log(this.props.games[this.props.games.length - 1].winner);
   },
   render: function() {
+    // console.log(this.props.games);
+    // var classes;
+    // if (this.props.games === undefined) {
+    //   classes = (this.props.games[this.props.games.length - 1].winner ? "winner" : "loser");
+    // } else {
+    //   classes = 'loser';
+    // }
     return (
       <div>
         <h1 className="title">HOT AND COLD!!</h1>
@@ -28,6 +36,7 @@ var HotAndCold = React.createClass({
         <button type="button" onClick={this.newGame}>
           New Game
         </button>
+        <h1 className={classes}>WINNER!!!!</h1>
       </div>
     );
   }
@@ -35,7 +44,7 @@ var HotAndCold = React.createClass({
 
 var mapStateToProps = function(state, props) {
     return {
-        guess: state
+        games: state
     };
 };
 

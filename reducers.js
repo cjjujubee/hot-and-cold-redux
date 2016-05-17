@@ -13,19 +13,21 @@ var gameReducer = function(state, action) {
   else if (action.type === actions.NEW_GAME) {
     return state.concat({
       guesses: [],
-      secretNumber: 10 //Math.floor((Math.random() * 100) + 1)
+      secretNumber: 10, //Math.floor((Math.random() * 100) + 1)
+      winner: false
     });
     //newGame(state);
   }
 
   else if (action.type === actions.MAKE_GUESS) {
     if (typeof action.guess === 'number' && (action.guess >= 1 && action.guess <= 100)) {
-      console.log(state);
       var currentState = update(state, {[state.length - 1]: {guesses: {$push: [action.guess]}}});
       console.log(currentState);
       // console.log(state[state.length - 1].secretNumber);
       if (state[state.length - 1].secretNumber === action.guess) {
         console.log('WINNER!!!!');
+        currentState.winner = true;
+        console.log(currentState);
         return currentState;
         // currentState = newGame(currentState);
       }
