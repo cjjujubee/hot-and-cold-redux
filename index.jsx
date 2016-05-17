@@ -8,6 +8,7 @@ var store = require('./store.js');
 var HotAndCold = React.createClass({
   componentWillMount: function() {
     this.props.dispatch(actions.newGame());
+    console.log('hi');
   },
   newGame: function() {
     this.props.dispatch(actions.newGame());
@@ -19,7 +20,11 @@ var HotAndCold = React.createClass({
     // console.log(this.props.games[0].winner);
   },
   render: function() {
-    console.log(this.props.games[0]);
+    var classes = 'loser';
+    console.log(this.props.games);
+    if(this.props.games.length > 0) {
+      console.log('yo', this.props.games[0].winner);
+    }
     return (
       <div>
         <h1 className="title">HOT AND COLD!!</h1>
