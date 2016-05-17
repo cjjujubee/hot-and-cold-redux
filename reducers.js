@@ -13,30 +13,45 @@ var gameReducer = function(state, action) {
   else if (action.type === actions.NEW_GAME) {
     return state.concat({
       guesses: [],
-      secretNumber: 10, //Math.floor((Math.random() * 100) + 1)
-      winner: false
+      secretNumber: Math.floor((Math.random() * 100) + 1),
+      winner: false,
+      feedbackText: ''
     });
     //newGame(state);
   }
 
   else if (action.type === actions.MAKE_GUESS) {
     if (typeof action.guess === 'number' && (action.guess >= 1 && action.guess <= 100)) {
-      console.log(state);
-      var currentState = update(state, {[state.length - 1]: {guesses: {$push: [action.guess]}}});
+      var currentState = update(state, {
+        [state.length - 1]: {
+          guesses:
+            {$push: [action.guess]},
+          feedbackText:
+            {$set: ''}}
+        });
+
+
       console.log(currentState);
+      // currentState[currentState.length - 1].feedbackText = false;
+      // console.log(currentState);
       // console.log(state[state.length - 1].secretNumber);
       if (state[state.length - 1].secretNumber === action.guess) {
-        currentState[0].winner = true;
-        console.log(currentState[0].winner);
+        currentState[currentState.length - 1].winner = true;
+        // console.log(currentState[0].winner);
         return currentState;
         // currentState = newGame(currentState);
       }
-      else {
-        return currentState;
-      }
     }
     else {
-      console.log("You're a dumbass!!! " + action.guess + " is not a number between 1 and 100!");
+      var currentState = update(state, {
+        [state.length - 1]: {
+          feedbackText: {$set: 'Wrong!!!!'}
+        }
+      });
+      console.log(currentState);
+      currentState[currentState.length - 1].feedbackText = true;
+      return currentState;
+      //alert("You're a dumbass!!! " + action.guess + " is not a number between 1 and 100!");
     }
   }
 

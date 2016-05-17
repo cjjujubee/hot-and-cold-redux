@@ -1,0 +1,15 @@
+.winner {
+  opacity: 1;
+}
+
+.loser {
+  opacity: 0;
+}
+
+.not-stupid {
+  opacity: 0;
+}
+
+.stupid {
+  opacity: 1;
+}
