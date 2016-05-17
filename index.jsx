@@ -16,9 +16,10 @@ var HotAndCold = React.createClass({
     var guess = parseInt(this.refs.userGuess.value);
     console.log(guess);
     this.props.dispatch(actions.makeGuess(guess));
-    console.log(this.props.games[0].winner);
+    // console.log(this.props.games[0].winner);
   },
   render: function() {
+    console.log(this.props.games[0]);
     return (
       <div>
         <h1 className="title">HOT AND COLD!!</h1>

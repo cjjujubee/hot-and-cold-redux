@@ -26,7 +26,8 @@ var gameReducer = function(state, action) {
       console.log(currentState);
       // console.log(state[state.length - 1].secretNumber);
       if (state[state.length - 1].secretNumber === action.guess) {
-        console.log('WINNER!!!!');
+        currentState[0].winner = true;
+        console.log(currentState[0].winner);
         return currentState;
         // currentState = newGame(currentState);
       }
