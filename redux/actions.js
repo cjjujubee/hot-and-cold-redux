@@ -13,8 +13,11 @@ var showInstructions = function() {
   }
 }
 
-//makes guess and validates
+
 var MAKE_GUESS = 'MAKE_GUESS';
+/** makes guess and validates
+ * @param {number} guess - the users guess from the makeGuess action.
+ */
 var makeGuess = function(guess) {
   return {
     type: MAKE_GUESS,
