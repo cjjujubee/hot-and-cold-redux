@@ -27,6 +27,7 @@ var connect = require('react-redux').connect;
 var Provider = require('react-redux').Provider;
 var store = require('./redux/store.js');
 var Button = require('./button');
+var DumbassText = require('./dumbass.jsx');
 
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
@@ -55,14 +56,14 @@ var HotAndCold = React.createClass({
     };
 
     return (
-      <div>
+      <div transitionName="feedback" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={300}>
         <h1 className="title">HOT AND COLD!!</h1>
         <input className="inputBox" type="text" ref="userGuess" />
         <Button clickyFunction={this.addGuess} text='Make Yo Move' disabled={disabled}/>
         <Button clickyFunction={this.newGame} text='New Game' />
-        <ReactCSSTransitionGroup transitionName="feedback" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={300}>
-          <h1 className='dumbassText'>{this.props.games[this.props.games.length - 1].feedbackText}</h1>
-        </ReactCSSTransitionGroup>
+        <div>
+          <DumbassText />
+        </div>
       </div>
     );
   }
