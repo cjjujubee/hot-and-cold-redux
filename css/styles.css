@@ -6,10 +6,21 @@
   opacity: 0;
 }
 
-.not-stupid {
-  opacity: 0;
+h1 {
+  color: orange;
+  text-align: center;
 }
 
-.stupid {
-  opacity: 1;
+.inputBox {
+  display: block;
+  margin: 0 auto;
+}
+
+.app {
+  width: 50%;
+  margin: 0 auto;
+  border: 2px dashed red;
+  text-align: center;
+  box-shadow: 2px 19px 10px -11px lightgrey;
+  background: url('http://news.nationalgeographic.com/content/dam/news/photos/000/255/25572.ngsversion.1422032185018.adapt.768.1.jpg') no-repeat center center;
 }

@@ -38,38 +38,48 @@ var gameReducer = function(state, action) {
 
 
       console.log(currentState);
-      // currentState[currentState.length - 1].feedbackText = false;
-      // console.log(currentState);
-      // console.log(state[state.length - 1].secretNumber);
-      if (state[state.length - 1].secretNumber === action.guess) {
+      var secretNumber = state[state.length - 1].secretNumber;
+      var distance = Math.abs(action.guess - secretNumber);
+
+      if (distance === 0) {
         currentState[currentState.length - 1].winner = true;
-        // console.log(currentState[0].winner);
         return currentState;
-        // currentState = newGame(currentState);
       }
+
+      else if (distance >= 50) {
+        currentState[currentState.length-1].feedbackText = 'Freezing cold, idiot!'
+      }
+
+      else if (distance >= 30) {
+        currentState[currentState.length-1].feedbackText = 'Pretty cold, moron!'
+      }
+
+      else if (distance >= 20) {
+        currentState[currentState.length-1].feedbackText = 'Warmish, twat!'
+      }
+
+      else if (distance >= 10) {
+        currentState[currentState.length-1].feedbackText = 'Warm, shmuck!'
+      }
+
+      else if (distance >= 1) {
+        currentState[currentState.length-1].feedbackText = 'Super hot, loser!'
+      }
+
       return currentState;
     }
     else {
       var currentState = update(state, {
         [state.length - 1]: {
-          feedbackText: {$set: 'Wrong!!!!'}
+          feedbackText: {$set: 'You\'re a dumbass!!!!'}
         }
       });
-      // console.log(currentState);
       return currentState;
-      //alert("You're a dumbass!!! " + action.guess + " is not a number between 1 and 100!");
     }
   }
 
 
   return state;
 };
-
-// function newGame(state) {
-//   return state.concat({
-//     guesses: [],
-//     secretNumber: 10 //Math.floor((Math.random() * 100) + 1)
-//   });
-// }
 
 exports.gameReducer = gameReducer;
