@@ -29,7 +29,6 @@ var HotAndCold = React.createClass({
         <input className="inputBox" type="text" ref="userGuess" />
         <Button clickyFunction={this.addGuess} text='Make Yo Move' disabled={disabled}/>
         <Button clickyFunction={this.newGame} text='New Game' />
-        <h1 className={classes}>WINNERRRRRRRRRR!!!!!!</h1>
         <h1 className='dumbassText'>{this.props.games[this.props.games.length - 1].feedbackText}</h1>
       </div>
     );

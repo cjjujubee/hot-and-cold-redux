@@ -1,3 +1,15 @@
+@font-face {
+    font-family: 'after_shokregular';
+    src: url('../fonts/After_Shok-webfont.eot');
+    src: url('../fonts/After_Shok-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/After_Shok-webfont.woff') format('woff'),
+         url('../fonts/After_Shok-webfont.ttf') format('truetype'),
+         url('../fonts/After_Shok-webfont.svg#after_shokregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 .winner {
   opacity: 1;
 }
@@ -6,9 +18,24 @@
   opacity: 0;
 }
 
-h1 {
-  color: orange;
+.title {
   text-align: center;
+  background: url('http://news.nationalgeographic.com/content/dam/news/photos/000/255/25572.ngsversion.1422032185018.adapt.768.1.jpg') no-repeat center center;
+  -webkit-background-clip: text, border;
+  background-clip: text, border;
+  color: transparent;
+  font-size: 5em;
+  font-family: 'after_shokregular', sans-serif;
+}
+
+.dumbassText {
+  text-align: center;
+  background: url('http://news.nationalgeographic.com/content/dam/news/photos/000/255/25572.ngsversion.1422032185018.adapt.768.1.jpg') no-repeat center center;
+  -webkit-background-clip: text, border;
+  background-clip: text, border;
+  color: transparent;
+  font-size: 3em;
+  font-family: cursive, sans-serif;
 }
 
 .inputBox {
@@ -19,8 +46,8 @@ h1 {
 .app {
   width: 50%;
   margin: 0 auto;
-  border: 2px dashed red;
+  border: 5px solid darkred;
   text-align: center;
   box-shadow: 2px 19px 10px -11px lightgrey;
-  background: url('http://news.nationalgeographic.com/content/dam/news/photos/000/255/25572.ngsversion.1422032185018.adapt.768.1.jpg') no-repeat center center;
+  background-color: black;
 }

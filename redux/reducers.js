@@ -43,7 +43,7 @@ var gameReducer = function(state, action) {
 
       if (distance === 0) {
         currentState[currentState.length - 1].winner = true;
-        return currentState;
+        currentState[currentState.length-1].feedbackText = 'WINNEERRR!'
       }
 
       else if (distance >= 50) {
