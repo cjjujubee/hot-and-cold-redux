@@ -20,7 +20,7 @@
 
 .title {
   text-align: center;
-  background: url('http://news.nationalgeographic.com/content/dam/news/photos/000/255/25572.ngsversion.1422032185018.adapt.768.1.jpg') no-repeat center center;
+  background: url('https://i.imgur.com/OLS9sCk.gif') no-repeat center center;
   -webkit-background-clip: text, border;
   background-clip: text, border;
   color: transparent;
@@ -50,4 +50,31 @@
   text-align: center;
   box-shadow: 2px 19px 10px -11px lightgrey;
   background-color: black;
+}
+
+.feedback-enter {
+  opacity: 0.01;
+}
+
+.feedback-enter.feedback-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.feedback-leave {
+  opacity: 1;
+}
+
+.feedback-leave.feedback-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
+.feedback-appear {
+  opacity: 0.01;
+}
+
+.feedback-appear.feedback-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
 }

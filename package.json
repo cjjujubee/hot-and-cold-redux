@@ -12,10 +12,11 @@
   "license": "ISC",
   "dependencies": {
     "react": "^15.0.2",
+    "react-addons-css-transition-group": "^15.0.2",
     "react-addons-update": "^15.0.2",
-    "redux": "^3.5.2",
+    "react-dom": "^15.0.2",
     "react-redux": "^4.4.5",
-    "react-dom": "^15.0.2"
+    "redux": "^3.5.2"
   },
   "devDependencies": {
     "babel": "^6.5.2",
