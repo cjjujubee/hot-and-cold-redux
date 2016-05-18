@@ -1,5 +1,5 @@
 var React = require('react');
-var actions = require('./actions');
+var actions = require('./redux/actions');
 var connect = require('react-redux').connect;
 
 var Button = React.createClass ({

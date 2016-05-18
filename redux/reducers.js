@@ -2,7 +2,12 @@ var actions = require('./actions');
 var update = require('react-addons-update');
 var store = require('./store');
 
-var initialState = [];
+var initialState = [{
+  guesses: [],
+  secretNumber: Math.floor((Math.random() * 100) + 1),
+  winner: false,
+  feedbackText: ''
+}];
 
 var gameReducer = function(state, action) {
   state = state || initialState;
@@ -17,18 +22,19 @@ var gameReducer = function(state, action) {
       winner: false,
       feedbackText: ''
     });
-    //newGame(state);
   }
 
   else if (action.type === actions.MAKE_GUESS) {
     if (typeof action.guess === 'number' && (action.guess >= 1 && action.guess <= 100)) {
       var currentState = update(state, {
-        [state.length - 1]: {
-          guesses:
-            {$push: [action.guess]},
-          feedbackText:
-            {$set: ''}}
-        });
+                                  [state.length - 1]: {
+                                    guesses:
+                                      {$push: [action.guess]
+                                    },
+                                    feedbackText:
+                                      {$set: ''}
+                                    }
+                                  });
 
 
       console.log(currentState);
@@ -41,6 +47,7 @@ var gameReducer = function(state, action) {
         return currentState;
         // currentState = newGame(currentState);
       }
+      return currentState;
     }
     else {
       var currentState = update(state, {
@@ -48,8 +55,7 @@ var gameReducer = function(state, action) {
           feedbackText: {$set: 'Wrong!!!!'}
         }
       });
-      console.log(currentState);
-      currentState[currentState.length - 1].feedbackText = true;
+      // console.log(currentState);
       return currentState;
       //alert("You're a dumbass!!! " + action.guess + " is not a number between 1 and 100!");
     }
