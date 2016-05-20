@@ -1,44 +1,48 @@
 var actions = require('./actions');
 var update = require('react-addons-update');
 var store = require('./store');
-/** The initial state object
- * @summary Sets up the initial state of the app.
-*/
+
 var initialState = [{
   guesses: [],
   secretNumber: Math.floor((Math.random() * 100) + 1),
   winner: false,
-  feedbackText: ''
+  feedbackText: '',
+  scores: []
 }];
-/** Game Reducer
- * @returns {object} empty game object with new secret number and add to game state array
- * @todo Need to implement the showing of instructions */
+
 var gameReducer = function(state, action) {
   state = state || initialState;
   if (action.type === actions.SHOW_INSTRUCTIONS) {
     return actions.showInstructions.text;
   }
-/** @returns {string} - something */
+
   else if (action.type === actions.NEW_GAME) {
     return state.concat({
       guesses: [],
       secretNumber: Math.floor((Math.random() * 100) + 1),
       winner: false,
-      feedbackText: ''
+      feedbackText: '',
+      scores: []
     });
   }
 
   else if (action.type === actions.MAKE_GUESS) {
     if (typeof action.guess === 'number' && (action.guess >= 1 && action.guess <= 100)) {
+      console.log(state);
       var currentState = update(state, {
-                                  [state.length - 1]: {
-                                    guesses:
-                                      {$push: [action.guess]
-                                    },
-                                    feedbackText:
-                                      {$set: ''}
-                                    }
-                                  });
+        [state.length - 1]: {
+          guesses: {
+            $push: [action.guess]
+          },
+          feedbackText: {
+            $set: ''
+          },
+          score: {
+            $set: [state.length + 1]
+          }
+        }
+        });
+
 
       console.log(currentState);
       var secretNumber = state[state.length - 1].secretNumber;
@@ -47,6 +51,7 @@ var gameReducer = function(state, action) {
       if (distance === 0) {
         currentState[currentState.length - 1].winner = true;
         currentState[currentState.length-1].feedbackText = 'WINNEERRR!'
+        currentState[currentState.length - 1].scores = currentState[currentState.length-1].guesses.length
       }
 
       else if (distance >= 50) {
@@ -80,6 +85,22 @@ var gameReducer = function(state, action) {
       return currentState;
     }
   }
+
+  else if (action.type === actions.FETCH_SCORES_SUCCESS) {
+    console.log('FETCH SCORES SUCCESS!!!', action.scores);
+    var currentState = update(state, {
+      [state.length - 1]: {
+        scores: {$set: action.scores}
+      }
+    })
+    return currentState;
+  }
+
+  else if (action.type === actions.FETCH_SCORES_ERROR) {
+    console.log('You\'re stupid, and you fail!');
+  }
+
+
   return state;
 };
 

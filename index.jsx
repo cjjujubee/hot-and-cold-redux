@@ -45,26 +45,33 @@ var HotAndCold = React.createClass({
     var guess = parseInt(this.refs.userGuess.value);
     this.props.dispatch(actions.makeGuess(guess));
   },
+  fetchScores: function() {
+    console.log(this.refs);
+    this.props.dispatch(actions.fetchScores());
+  },
   render: function() {
     /** setting variables for the render method */
     var classes = 'loser';
     var disabled = false;
+    var scores = [];
+    console.log(this.props);
 
     if (this.props.games[this.props.games.length - 1].winner === true) {
       classes = 'winner';
       disabled = true;
     };
-
     return (
-      <div transitionName="feedback" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={300}>
+      <ReactCSSTransitionGroup component="div" transitionName="feedback" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={300}>
         <h1 className="title">HOT AND COLD!!</h1>
         <input className="inputBox" type="text" ref="userGuess" />
         <Button clickyFunction={this.addGuess} text='Make Yo Move' disabled={disabled}/>
         <Button clickyFunction={this.newGame} text='New Game' />
-        <div>
+        <Button clickyFunction={this.fetchScores} text='BESTEST EVER' />
+        <ul> {this.props.games[this.props.games.length - 1].scores} </ul>
+        <ReactCSSTransitionGroup component="div" transitionName="example" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={300}>
           <DumbassText />
-        </div>
-      </div>
+        </ReactCSSTransitionGroup>
+      </ReactCSSTransitionGroup>
     );
   }
 });
